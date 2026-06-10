@@ -37,6 +37,8 @@
     "jsonfile": "^6.2.1",
     "module-alias": "^2.3.4",
     "morgan": "^1.11.0",
+    "pg": "^8.21.0",
+    "reflect-metadata": "^0.2.2",
     "tspo": "^1.0.7",
     "typeorm": "^1.0.0"
   },
@@ -51,6 +53,7 @@
     "@types/module-alias": "^2.0.4",
     "@types/morgan": "^1.9.10",
     "@types/node": "^25.9.2",
+    "@types/pg": "^8.20.0",
     "@types/supertest": "^7.2.0",
     "browser-sync": "^3.0.4",
     "concurrently": "^10.0.3",

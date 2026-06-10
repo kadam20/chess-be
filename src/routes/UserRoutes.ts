@@ -13,9 +13,9 @@ import parseReq from './common/parseReq';
 ******************************************************************************/
 
 const reqValidators = {
-  add: parseReq({ user: User.isComplete }),
-  update: parseReq({ user: User.isComplete }),
-  delete: parseReq({ id: transform(Number, isNumber) }),
+    add: parseReq({ user: User.isComplete }),
+    update: parseReq({ user: User.isComplete }),
+    delete: parseReq({ id: transform(Number, isNumber) }),
 } as const;
 
 /******************************************************************************
@@ -28,8 +28,8 @@ const reqValidators = {
  * @route GET /api/users/all
  */
 async function getAll(_: Req, res: Res) {
-  const users = await UserService.getAll();
-  res.status(HttpStatusCodes.OK).json({ users });
+    const users = await UserService.getAll();
+    res.status(HttpStatusCodes.OK).json({ users });
 }
 
 /**
@@ -38,9 +38,9 @@ async function getAll(_: Req, res: Res) {
  * @route POST /api/users/add
  */
 async function add(req: Req, res: Res) {
-  const { user } = reqValidators.add(req.body);
-  await UserService.addOne(user);
-  res.status(HttpStatusCodes.CREATED).end();
+    const { user } = reqValidators.add(req.body);
+    await UserService.addOne(user);
+    res.status(HttpStatusCodes.CREATED).end();
 }
 
 /**
@@ -49,9 +49,9 @@ async function add(req: Req, res: Res) {
  * @route PUT /api/users/update
  */
 async function update(req: Req, res: Res) {
-  const { user } = reqValidators.update(req.body);
-  await UserService.updateOne(user);
-  res.status(HttpStatusCodes.OK).end();
+    const { user } = reqValidators.update(req.body);
+    await UserService.updateOne(user);
+    res.status(HttpStatusCodes.OK).end();
 }
 
 /**
@@ -60,9 +60,9 @@ async function update(req: Req, res: Res) {
  * @route DELETE /api/users/delete/:id
  */
 async function delete_(req: Req, res: Res) {
-  const { id } = reqValidators.delete(req.params);
-  await UserService.delete(id);
-  res.status(HttpStatusCodes.OK).end();
+    const { id } = reqValidators.delete(req.params);
+    await UserService.delete(id);
+    res.status(HttpStatusCodes.OK).end();
 }
 
 /******************************************************************************
@@ -70,8 +70,8 @@ async function delete_(req: Req, res: Res) {
 ******************************************************************************/
 
 export default {
-  getAll,
-  add,
-  update,
-  delete: delete_,
+    getAll,
+    add,
+    update,
+    delete: delete_,
 } as const;

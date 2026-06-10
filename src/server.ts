@@ -24,12 +24,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Show routes called in console during development
 if (EnvVars.NodeEnv === NodeEnvs.DEV) {
-  app.use(morgan('dev'));
+    app.use(morgan('dev'));
 }
 
 // Security
 if (EnvVars.NodeEnv === NodeEnvs.PRODUCTION) {
-  app.use(helmet());
+    app.use(helmet());
 }
 
 // Add APIs, must be after middleware
@@ -37,13 +37,13 @@ app.use(Paths._, BaseRouter);
 
 // Add error handler
 app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
-  if (EnvVars.NodeEnv !== NodeEnvs.TEST.valueOf()) {
-    logger.err(err, true);
-  }
-  if (err instanceof RouteError) {
-    res.status(err.status).json({ error: err.message });
-  }
-  return next(err);
+    if (EnvVars.NodeEnv !== NodeEnvs.TEST.valueOf()) {
+        logger.err(err, true);
+    }
+    if (err instanceof RouteError) {
+        res.status(err.status).json({ error: err.message });
+    }
+    return next(err);
 });
 
 // **** FrontEnd Content **** //
@@ -58,12 +58,12 @@ app.use(express.static(staticDir));
 
 // Nav to users pg by default
 app.get('/', (_: Request, res: Response) => {
-  return res.redirect('/users');
+    return res.redirect('/users');
 });
 
 // Redirect to login if not logged in.
 app.get('/users', (_: Request, res: Response) => {
-  return res.sendFile('users.html', { root: viewsDir });
+    return res.sendFile('users.html', { root: viewsDir });
 });
 
 /******************************************************************************

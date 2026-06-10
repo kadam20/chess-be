@@ -11,9 +11,9 @@ import { ValidationError } from '@src/common/utils/route-errors';
  * "ParseObjError" and add it to the nestedErrors array.
  */
 function parseReq<U extends Schema>(schema: U) {
-  return parseObject(schema, (errors) => {
-    throw new ValidationError(errors);
-  });
+    return parseObject(schema, (errors) => {
+        throw new ValidationError(errors);
+    });
 }
 
 export default parseReq;

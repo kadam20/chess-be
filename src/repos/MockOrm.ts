@@ -9,18 +9,18 @@ import { IUser } from '@src/models/User.model';
 ******************************************************************************/
 
 const DATABASE_FILE_PATH =
-  __dirname +
-  '/common' +
-  (EnvVars.NodeEnv === NodeEnvs.TEST
-    ? '/database.test.json'
-    : '/database.json');
+    __dirname +
+    '/common' +
+    (EnvVars.NodeEnv === NodeEnvs.TEST
+        ? '/database.test.json'
+        : '/database.json');
 
 /******************************************************************************
                                 Types
 ******************************************************************************/
 
 type Database = {
-  users: IUser[];
+    users: IUser[];
 };
 
 /******************************************************************************
@@ -31,25 +31,27 @@ type Database = {
  * Fetch the json from the file.
  */
 async function openDb(): Promise<Database> {
-  const db = await (jsonfile.readFile(DATABASE_FILE_PATH) as Promise<Database>);
-  if (!('users' in db)) {
-    return tspo.addEntry(db, ['users', []]);
-  }
-  return db;
+    const db = await (jsonfile.readFile(
+        DATABASE_FILE_PATH,
+    ) as Promise<Database>);
+    if (!('users' in db)) {
+        return tspo.addEntry(db, ['users', []]);
+    }
+    return db;
 }
 
 /**
  * Update the file.
  */
 function saveDb(db: Database): Promise<void> {
-  return jsonfile.writeFile(DATABASE_FILE_PATH, db);
+    return jsonfile.writeFile(DATABASE_FILE_PATH, db);
 }
 
 /**
  * Empty the database
  */
 function cleanDb(): Promise<void> {
-  return jsonfile.writeFile(DATABASE_FILE_PATH, {});
+    return jsonfile.writeFile(DATABASE_FILE_PATH, {});
 }
 
 /******************************************************************************
@@ -57,7 +59,7 @@ function cleanDb(): Promise<void> {
 ******************************************************************************/
 
 export default {
-  openDb,
-  saveDb,
-  cleanDb,
+    openDb,
+    saveDb,
+    cleanDb,
 } as const;
